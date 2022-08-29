@@ -15,27 +15,34 @@ Now let's have a quick EDA that gives us more information about our data in a si
 The data used for this analysis can be found [here](https://raw.githubusercontent.com/JovianML/opendatasets/master/data/medical-charges.csv):
   > First install pandas-profiling package and others we might need.
   `pip install pandas-profiling`
+
   `pip install pandas`
 
   > Next import dependencies
+
   `from pandas-profiling import ProfileReport`
+
   `import pandas as pd`
 
   > Now let's retrieve the csv file from the url and view what it looks like:
 
   We can do it in two ways:
   `data = pd.read_csv(url)`
+
   `data.head()`
   or 
   `from urllib.request import urlretrieve`
+
   `urlretrieve(url, "medical-charges.csv")`
+
   `data = pd.read_csv(medical-charges.csv)`
+
   `data.head()`
 
 I'm not really sure which method I prefer but let's move on:
   > Running the analysis with pandas-profiling package
   `profile = pdp.ProfileReport(data, title="Pandas Profiling Report")`
+  
   `profile`
  
  It shows us the descriptive statistics (include snippets of data output)
- 
