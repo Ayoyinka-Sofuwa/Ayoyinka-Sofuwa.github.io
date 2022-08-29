@@ -1,38 +1,48 @@
 ---
 layout: post
-title: Introducing Lanyon
+title: Found an exciting all-in-one EDA tool.
 ---
 
-Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+It is popularly said that 80% of a data scientist's time is spent on EDA, looking for a simple way to do your basic EDA in one or two lines of code?
 
-### Built on Poole
 
-Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by [@mdo](https://twitter.com/mdo). Poole, and every theme built on it (like Lanyon here) includes the following:
+[Pandas-profiling](https://pypi.org/project/pandas-profiling/) is a tool for creating profile reports from a pandas dataframe. It's really useful for some quick data analysis. 
 
-* Complete Jekyll setup included (layouts, config, [404](/404), [RSS feed](/atom.xml), posts, and [example page](/about))
-* Mobile friendly design and development
-* Easily scalable text and component sizing with `rem` units in the CSS
-* Support for a wide gamut of HTML elements
-* Related posts (time-based, because Jekyll) below each post
-* Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)
+Here's what I did with it. I worked on this dataset from [JovianML](https://twitter.com/jovianml) and we're tasked with creating an automated system to estimate the annual medical expenditure for new customers, using information such as their age, sex, BMI, children, smoking habits and region of residence. Basically, we want to determine what features influence the medical charges for different patients and how we can predict medical bills for new users using their different demographics.
 
-### Lanyon features
+Now let's have a quick EDA that gives us more information about our data in a single line of code.
 
-In addition to the features of Poole, Lanyon adds the following:
+The data used for this analysis can be found [here](https://raw.githubusercontent.com/JovianML/opendatasets/master/data/medical-charges.csv):
+  > First install pandas-profiling package and others we might need.
+  `pip install pandas-profiling`
 
-* Toggleable sliding sidebar (built with only CSS) via **☰** link in top corner
-* Sidebar includes support for textual modules and a dynamically generated navigation with active link support
-* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
-* [Eight optional color schemes](https://github.com/poole/lanyon#themes), available via `<body>` classes
+  `pip install pandas`
 
-[Head to the readme](https://github.com/poole/lanyon#readme) to learn more.
+  > Next import dependencies
 
-### Browser support
+  `from pandas-profiling import ProfileReport`
 
-Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.
+  `import pandas as pd`
 
-### Download
+  > Now let's retrieve the csv file from the url and view what it looks like:
 
-Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.
+  We can do it in two ways:
+  `data = pd.read_csv(url)`
 
-Thanks!
+  `data.head()`
+  or 
+  `from urllib.request import urlretrieve`
+
+  `urlretrieve(url, "medical-charges.csv")`
+
+  `data = pd.read_csv(medical-charges.csv)`
+
+  `data.head()`
+
+I'm not really sure which method I prefer but let's move on:
+  > Running the analysis with pandas-profiling package
+  `profile = pdp.ProfileReport(data, title="Pandas Profiling Report")`
+  
+  `profile`
+ 
+ It shows us the descriptive statistics (include snippets of data output)
