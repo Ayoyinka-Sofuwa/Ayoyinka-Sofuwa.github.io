@@ -8,15 +8,34 @@ It is popularly said that 80% of a data scientist's time is spent on EDA, lookin
 
 [Pandas-profiling](https://pypi.org/project/pandas-profiling/) is a tool for creating profile reports from a pandas dataframe. It's really useful for some quick data analysis. 
 
-Here's what I did with it. I worked on this dataset from [JovianML](https://twitter.com/jovianml) which you can find [here](https://raw.githubusercontent.com/JovianML/opendatasets/master/data/medical-charges.csv)
+Here's what I did with it. I worked on this dataset from [JovianML](https://twitter.com/jovianml) and we're tasked with creating an automated system to estimate the annual medical expenditure for new customers, using information such as their age, sex, BMI, children, smoking habits and region of residence. Basically, we want to determine what features influence the medical charges for different patients and how we can predict medical bills for new users using their different demographics.
 
-Here we want to determine as a data scientist what features influence the medical charges for different patients and how we can predict medical bills for users in different demographics
+Now let's have a quick EDA that gives us more information about our data in a single line of code.
 
+The data used for this analysis can be found [here](https://raw.githubusercontent.com/JovianML/opendatasets/master/data/medical-charges.csv):
+  > First install pandas-profiling package and others we might need.
+  `pip install pandas-profiling`
+  `pip install pandas`
 
- From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):
+  > Next import dependencies
+  `from pandas-profiling import ProfileReport`
+  `import pandas as pd`
 
-  > Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.
+  > Now let's retrieve the csv file from the url and view what it looks like:
 
-It's an immensely useful tool and one we encourage you to use here with Lanyon.
+  We can do it in two ways:
+  `data = pd.read_csv(url)`
+  `data.head()`
+  or 
+  `from urllib.request import urlretrieve`
+  `urlretrieve(url, "medical-charges.csv")`
+  `data = pd.read_csv(medical-charges.csv)`
+  `data.head()`
 
-Find out more by [visiting the project on GitHub](https://github.com/mojombo/jekyll).
+I'm not really sure which method I prefer but let's move on:
+  > Running the analysis with pandas-profiling package
+  `profile = pdp.ProfileReport(data, title="Pandas Profiling Report")`
+  `profile`
+ 
+ It shows us the descriptive statistics (include snippets of data output)
+ 
